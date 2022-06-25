@@ -1,0 +1,9 @@
+assets/compressed/
+build/debug/
+build/doc
+build/release/
+build/CACHEDIR.TAG
+build/.rustc_info.json
+build/.rustdoc_fingerprint.json
+Cargo.lock
+src/data.rs

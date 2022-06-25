@@ -1,0 +1,6 @@
+[build]
+target-dir = "build"
+
+[profile]
+opt-level = 3
+debug = false
