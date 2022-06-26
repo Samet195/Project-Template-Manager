@@ -15,8 +15,21 @@ use zip::{
 };
 
 fn main() {
-    fs::create_dir_all(DIRS).unwrap();
-    fs::create_dir_all(ZIPS).unwrap();
+    if !Path::new(DIRS).exists() {
+        fs::create_dir_all(DIRS).unwrap();
+    }
+
+    if !Path::new(ZIPS).exists() {
+        fs::create_dir_all(ZIPS).unwrap();
+    } else {
+        for i in fs::read_dir(ZIPS).unwrap() {
+            let i = i.unwrap().path();
+            match i.is_dir() {
+                true => fs::remove_dir(i).unwrap(),
+                false => fs::remove_file(i).unwrap(),
+            }
+        }
+    }
 
     for path in list_dir(DIRS) {
         let dir_name = Path::new(path.iter().last().unwrap().to_str().unwrap());
